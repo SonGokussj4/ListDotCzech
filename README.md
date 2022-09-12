@@ -40,7 +40,17 @@ Nebo filtrovat přes všechna pole dynamicky, pokud by se někdy rozšířila?
 ## Installation
 
 ```bash
+# Backend
+$ cd api
+$ make install
+$ make dev  # or make prod
+
+# Frontend
+$ cd client
+$ make install
+$ make dev  # or make prod
 ```
+
 ## Used technologies
 
 ### General
@@ -49,7 +59,14 @@ Nebo filtrovat přes všechna pole dynamicky, pokud by se někdy rozšířila?
 ### Backend
 
 * FastAPI (Python)
+* Pydantic
 ### Frontend
 
 * Next.js (React)
 * TypeScript
+
+## Helpers
+
+* <https://github.com/brokenloop/jsontopydantic>  
+* <https://jsontopydantic.com/>  
+for converting JSON to Pydantic models
