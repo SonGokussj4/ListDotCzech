@@ -42,11 +42,13 @@ Nebo filtrovat přes všechna pole dynamicky, pokud by se někdy rozšířila?
 ```bash
 # Backend
 $ cd api
+$ cp .env.example .env
 $ make install
 $ make dev  # or make prod
 
 # Frontend
 $ cd client
+$ cp .env.local.example .env.local
 $ make install
 $ make dev  # or make prod
 ```
@@ -56,6 +58,7 @@ $ make dev  # or make prod
 ### General
 
 * Makefile
+
 ### Backend
 
 * FastAPI (Python)
