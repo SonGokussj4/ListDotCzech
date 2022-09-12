@@ -47,6 +47,15 @@ export const getServerSideProps: GetServerSideProps = async () => {
     console.log(`[ DEBUG ] fetching: ${process.env.API_URL}/videos`)
 
     const res = await fetch(`${process.env.API_URL}/videos`)
+        .catch((err) => {
+            console.log(`[ ERROR ] ${err}`)
+            return null
+        })
+
+    if (res === null) {
+        return { props: { data: { count: 0, videos: [] } } }
+    }
+
     const data = await res.json()
 
     return { props: { data } }
