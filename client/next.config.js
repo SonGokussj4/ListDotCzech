@@ -3,6 +3,13 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    domains: [
+      'localhost',
+      'storage.googleapis.com',
+      'lab.streamshark.io'
+    ],
+  },
   env: {
     DEV: true,
     API_URL: 'http://0.0.0.0:8000',

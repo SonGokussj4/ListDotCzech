@@ -21,14 +21,18 @@ async def root():
     return {"message": "Hello World"}
 
 @app.get("/videos")
-async def get_videos():
+async def get_videos(name: str = "") -> dict[str, int | Videos]:
     """Get videos from fixed URL endpoint.
 
     Returns:
         {'count': int, 'videos': Videos}
     """
     response = requests.get(URL)
-    videos: Videos =  response.json()
+    videos =  response.json()
+
+    if name:
+        videos = [video for video in videos if name.lower() in video["name"].lower()]
+
     count = len(videos)
 
     return {"count": count, "videos": videos}
