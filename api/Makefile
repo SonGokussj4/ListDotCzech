@@ -7,7 +7,7 @@ help:
 	@echo COMMANDS:
 	@echo 	help             this help
 	@echo 	install          create virtualenv and install python dependencies
-	@echo 	debug            start dev server
+	@echo 	dev              start dev server
 	@echo 	prod             start server (in background)
 	@echo 	down             stop server
 
@@ -17,7 +17,7 @@ install:
 	@echo "Installing dependencies..."
 	@.venv/bin/pip install -r requirements.txt
 
-debug:
+dev:
 	@echo "Starting backend dev server..."
 	@uvicorn main:app --reload
 
