@@ -40,6 +40,12 @@ Nebo filtrovat přes všechna pole dynamicky, pokud by se někdy rozšířila?
 ## Installation
 
 ```bash
+
+# DB
+$ docker-compose up -d
+$ alembic revision --autogenerate -m "First migration"
+$ alembic upgrade head
+
 # Backend
 $ cd api
 $ cp .env.example .env
@@ -57,16 +63,22 @@ $ make dev  # or make prod
 
 ### General
 
+* Docker
+* Docker Compose
 * Makefile
 
 ### Backend
 
 * FastAPI (Python)
 * Pydantic
+* SQLAlchemy
+* PostgreSQL
+
 ### Frontend
 
 * Next.js (React)
 * TypeScript
+* Bootstrap
 
 ## Helpers
 

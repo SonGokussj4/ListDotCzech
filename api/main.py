@@ -12,6 +12,7 @@ load_dotenv()
 
 # CONSTANTS
 URL = os.getenv("URL", "")
+DATABASE_URL = os.getenv("DATABASE_URL", "")
 
 app = FastAPI()
 
