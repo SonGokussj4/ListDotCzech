@@ -8,7 +8,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to LinkDotCzech site
+          Welcome to ListDotCzech site
         </h1>
 
         <p className={styles.description}>

@@ -31,12 +31,12 @@ const Videos: NextPage<IProps> = ({ data }) => {
 
     return (
         <>
-            <h1 style={{ padding: 20 }}>Videos ({data.count})</h1>
+            <h1 style={{ padding: 20 }}>Videos ({data.count}) (Source: {data.source})</h1>
 
 
             {/* Create text input for filtering data */}
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="txtSearchByName">
+            <div className="input-group mb-3" style={{ width: 500 }}>
+                <span className="input-group-text" id="txtSearchByName" style={{ width: 120 }}>
                     Filter: Name
                 </span>
                 <input

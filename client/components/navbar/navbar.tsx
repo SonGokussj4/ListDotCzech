@@ -10,7 +10,7 @@ export default function MyNavbar() {
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="color-nav">
                 <Container>
-                    <Navbar.Brand href="/">LinkDotCzech</Navbar.Brand>
+                    <Navbar.Brand href="/">ListDotCzech</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
