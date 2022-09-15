@@ -18,6 +18,7 @@ interface IVideoItem {
 interface IVideos {
     count: number
     videos: Array<IVideoItem>
+    source: string
 };
 
 function handleFilterName(e: any) {
