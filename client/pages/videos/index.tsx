@@ -173,7 +173,7 @@ const Videos: NextPage<IProps> = ({ data, filterItems }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
-    const filterItemsRes = await fetch(`${process.env.API_URL}/getFilterItems?name=${context.query?.name}`)
+    const filterItemsRes = await fetch(`${process.env.API_URL}/getFilterItems?name=${context.query?.name ? context.query?.name : ''}`)
         .catch((err) => {
             console.log(`[ ERROR ] ${err}`)
             return null
