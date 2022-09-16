@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import re
 import requests
 from fastapi_utils.tasks import repeat_every
 
@@ -39,6 +40,7 @@ async def get_videos(name: str = "") -> dict[str, int | str | Videos]:
     Returns:
         {'count': int, 'videos': Videos, 'source': str}
     """
+    # URL = "https://noffirgoku.gi"
     try:
         response = requests.get(URL)
         data = response.json()
@@ -72,6 +74,39 @@ def create_user(user: SchemaVideo) -> SchemaVideo:
     db.session.commit()
     return _video
 
+@app.get("/getFilterItems")
+async def get_filter_items(name: str = "") -> dict[str, list[str]]:
+    """Get all filter items. (only from DB, so not real time data)"""
+    print("GETTING VIDEOS")
+    print("NAME: ", name)
+    res = await get_videos(name)
+    videos: Videos = res.get("videos", {"count": 0, "videos": []})
+
+    # print(f'videos: {videos}')
+
+    # with db():
+    #     videos = db.session.query(ModelVideo).all()
+    #     videos = [SchemaVideo.from_orm(video).data for video in videos]
+
+    # Extract filter items by "key" name from Videos
+    filter_items: dict[str, list[str]] = {
+        "name": [],
+        "disabled": [],
+        "features": []
+    }
+    for video in videos:
+        for key, value in video.items():
+            if key in filter_items:
+                if value not in filter_items[key]:
+                    filter_items[key].append(value)
+
+    # Filter titles to get only the first part until "(, w/, ," starts
+    filter_items["name"] = list({re.split(r"[(]|w/|,", name)[0].strip() for name in filter_items["name"]})
+
+    # Filter unique features
+    filter_items["features"] = list({item for sublist in filter_items["features"] for item in sublist})
+
+    return filter_items
 
 @app.on_event("startup")
 @repeat_every(seconds=60 * 60)  # 1 hour
@@ -82,6 +117,7 @@ async def save_videos_periodically():
     videos = data["videos"]
     assert isinstance(videos, list)
     save_videos(videos)
+    print("[ DEBUG ] Saving videos to database... DONE")
 
 
 def save_videos(videos: list[VideoItem]) -> None:
