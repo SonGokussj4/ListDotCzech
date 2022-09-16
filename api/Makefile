@@ -1,5 +1,12 @@
 # Python - FastAPI
 
+ifeq ($(OS),Windows_NT)
+	VENVDIR = .venv\Scripts
+else
+	VENVDIR = .venv/bin
+endif
+
+
 help:
 	@echo USAGE:
 	@echo 	make [COMMAND]
@@ -13,13 +20,13 @@ help:
 
 install:
 	@echo "Creating virtualenv..."
-	@python3 -m venv .venv
+	@python3.10 -m venv .venv
 	@echo "Installing dependencies..."
-	@.venv/bin/pip install -r requirements.txt
+	@${VENVDIR}/pip install -r requirements.txt
 
 dev:
 	@echo "Starting backend dev server..."
-	@uvicorn main:app --reload
+	${VENVDIR}/uvicorn main:app --reload
 
 prod:
 	@echo "Starting server..."

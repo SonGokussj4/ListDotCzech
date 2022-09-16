@@ -39,6 +39,8 @@ Nebo filtrovat přes všechna pole dynamicky, pokud by se někdy rozšířila?
 
 ## Installation
 
+> Python 3.10 is required
+
 ```bash
 
 # DB
@@ -49,12 +51,12 @@ $ alembic upgrade head
 # Backend
 $ cd api
 $ cp .env.example .env
+# Fill in the .env file
 $ make install
 $ make dev  # or make prod
 
 # Frontend
 $ cd client
-$ cp .env.local.example .env.local
 $ make install
 $ make dev  # or make prod
 ```
